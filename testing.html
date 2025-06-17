@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Lab Order Modal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Button to trigger modal -->
+<div class="container mt-5">
+    <button class="btn btn-primary btn-lg" onclick="openOrderModal()">
+        <i class="bi bi-cart-plus me-2"></i>Order Now
+    </button>
+</div>
+
+<!-- Order Modal -->
+<div class="modal fade" id="orderModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">🛒 Order Cookie Lab</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <h6>Pilih Produk:</h6>
+                        <div class="product-selection">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input product-checkbox" type="checkbox" value="45000" id="product1">
+                                <label class="form-check-label" for="product1">
+                                    🍪 Classic Chocolate Chip - Rp 45.000
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input product-checkbox" type="checkbox" value="50000" id="product2">
+                                <label class="form-check-label" for="product2">
+                                    🥜 Nutty Delight - Rp 50.000
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input product-checkbox" type="checkbox" value="48000" id="product3">
+                                <label class="form-check-label" for="product3">
+                                    🍓 Berry Bliss - Rp 48.000
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input product-checkbox" type="checkbox" value="47000" id="product4">
+                                <label class="form-check-label" for="product4">
+                                    🍯 Honey Oat - Rp 47.000
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Detail Pesanan:</h6>
+                        <form id="orderForm">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="buyerName" placeholder="Nama Lengkap" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" class="form-control" id="buyerPhone" placeholder="Nomor WhatsApp" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="3" id="buyerAddress" placeholder="Alamat Lengkap" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <select class="form-select" id="shippingMethod" required>
+                                    <option value="">Pilih Metode Pengiriman</option>
+                                    <option value="Pickup (Gratis)">Pickup (Gratis)</option>
+                                    <option value="Delivery (+Rp 10.000)">Delivery (+Rp 10.000)</option>
+                                    <option value="Kurir Ekspedisi (+Rp 15.000)">Kurir Ekspedisi (+Rp 15.000)</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="mt-4 p-3 bg-light rounded">
+                    <h6>Total Pesanan: <span id="totalPrice" class="text-primary">Rp 0</span></h6>
+                    <small class="text-muted" id="priceBreakdown"></small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-success" onclick="processOrder()">
+                    <i class="bi bi-whatsapp me-2"></i>Order via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Order Modal Functions
+function openOrderModal() {
+    const modal = new bootstrap.Modal(document.getElementById('orderModal'));
+    modal.show();
+}
+
+// Calculate total price in order modal
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listeners to checkboxes
+    document.querySelectorAll('.product-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', updateTotalPrice);
+    });
+    
+    // Add event listener to shipping method
+    document.getElementById('shippingMethod').addEventListener('change', updateTotalPrice);
+});
+
+function updateTotalPrice() {
+    let subtotal = 0;
+    document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
+        subtotal += parseInt(checkbox.value);
+    });
+
+    // Get shipping cost
+    const shippingMethod = document.getElementById('shippingMethod').value;
+    let shippingCost = 0;
+    
+    if (shippingMethod.includes('Delivery')) {
+        shippingCost = 10000;
+    } else if (shippingMethod.includes('Kurir Ekspedisi')) {
+        shippingCost = 15000;
+    }
+
+    const total = subtotal + shippingCost;
+    document.getElementById('totalPrice').textContent = `Rp ${total.toLocaleString('id-ID')}`;
+    
+    // Show price breakdown
+    const breakdown = document.getElementById('priceBreakdown');
+    if (subtotal > 0) {
+        breakdown.textContent = `Subtotal: Rp ${subtotal.toLocaleString('id-ID')} | Ongkir: Rp ${shippingCost.toLocaleString('id-ID')}`;
+    } else {
+        breakdown.textContent = '';
+    }
+}
+
+function processOrder() {
+    const selectedProducts = [];
+    const checkboxes = document.querySelectorAll('.product-checkbox:checked');
+    const buyerName = document.getElementById('buyerName').value.trim();
+    const buyerPhone = document.getElementById('buyerPhone').value.trim();
+    const buyerAddress = document.getElementById('buyerAddress').value.trim();
+    const shippingMethod = document.getElementById('shippingMethod').value;
+
+    // Validasi input
+    if (checkboxes.length === 0) {
+        alert('Pilih minimal satu produk!');
+        return;
+    }
+
+    if (!buyerName) {
+        alert('Nama lengkap harus diisi!');
+        document.getElementById('buyerName').focus();
+        return;
+    }
+
+    if (!buyerPhone) {
+        alert('Nomor WhatsApp harus diisi!');
+        document.getElementById('buyerPhone').focus();
+        return;
+    }
+
+    if (!buyerAddress) {
+        alert('Alamat lengkap harus diisi!');
+        document.getElementById('buyerAddress').focus();
+        return;
+    }
+
+    if (!shippingMethod) {
+        alert('Pilih metode pengiriman!');
+        document.getElementById('shippingMethod').focus();
+        return;
+    }
+
+    // Kumpulkan produk yang dipilih
+    checkboxes.forEach(checkbox => {
+        const productName = checkbox.nextElementSibling.textContent.trim();
+        selectedProducts.push(productName);
+    });
+
+    // Hitung total harga
+    let subtotal = 0;
+    checkboxes.forEach(checkbox => {
+        subtotal += parseInt(checkbox.value);
+    });
+
+    // Hitung ongkir
+    let shippingCost = 0;
+    if (shippingMethod.includes('Delivery')) {
+        shippingCost = 10000;
+    } else if (shippingMethod.includes('Kurir Ekspedisi')) {
+        shippingCost = 15000;
+    }
+
+    const total = subtotal + shippingCost;
+
+    // Format pesan WhatsApp
+    const message = `🍪 *PESANAN COOKIE LAB* 🍪
+
+📋 *DETAIL PESANAN:*
+${selectedProducts.map((product, index) => `${index + 1}. ${product}`).join('\n')}
+
+💰 *RINCIAN HARGA:*
+Subtotal Produk: Rp ${subtotal.toLocaleString('id-ID')}
+Ongkos Kirim: Rp ${shippingCost.toLocaleString('id-ID')}
+*TOTAL BAYAR: Rp ${total.toLocaleString('id-ID')}*
+
+👤 *DATA PEMBELI:*
+Nama: ${buyerName}
+No. WhatsApp: ${buyerPhone}
+Alamat: ${buyerAddress}
+
+🚚 *METODE PENGIRIMAN:*
+${shippingMethod}
+
+Terima kasih sudah memesan di Cookie Lab! 😊`;
+
+    // Debug log
+    console.log('Sending message:', message);
+
+    // Kirim ke WhatsApp
+    const whatsappUrl = `https://wa.me/6285162672736?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+    
+    // Close modal after sending
+    const modal = bootstrap.Modal.getInstance(document.getElementById('orderModal'));
+    modal.hide();
+}
+</script>
+
+</body>
+</html>

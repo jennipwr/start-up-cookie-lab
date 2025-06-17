@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Lab - Gluten-Free, Guilt-Free Cookies</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style-home.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-overlay" id="loadingScreen">
+        <div class="loading-cookie">🍪</div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Cookie Trail -->
+    <div class="cookie-trail" id="cookieTrail">🍪</div>
+
+    <!-- Floating Cookies -->
+    <div class="floating-cookie" style="top: 20%; left: 10%; animation-delay: 0s;">🍪</div>
+    <div class="floating-cookie" style="top: 60%; right: 15%; animation-delay: 2s;">🥠</div>
+    <div class="floating-cookie" style="bottom: 20%; left: 20%; animation-delay: 4s;">🍫</div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#home">
+                <img src="logo-cookie-lab.png" alt="Cookie Lab Logo" style="height: 40px; margin-right: 10px;">
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <button class="btn btn-order" onclick="openOrderModal()">
+                    <i class="bi bi-cart-plus me-2"></i>Order Now
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="hero-content" data-aos="fade-up">
+                        <h1 class="hero-title">Cookie Lab</h1>
+                        <p class="slogan" data-aos="fade-up" data-aos-delay="200">
+                            <span class="text-animation">Gluten-Free, Guilt-Free</span>
+                        </p>
+                        <p class="hero-description" data-aos="fade-up" data-aos-delay="400">
+                            🌾 Nikmati cookies premium yang dibuat dengan tepung singkong berkualitas tinggi. 
+                            Rasa lezat tanpa gluten, cocok untuk semua orang yang peduli dengan kesehatan.
+                        </p>
+                        <div class="d-flex gap-3 flex-wrap" data-aos="fade-up" data-aos-delay="600">
+                            <button class="btn btn-hero btn-primary" onclick="scrollToSection('products')">
+                                <i class="bi bi-eye me-2"></i>Lihat Produk
+                            </button>
+                            <button class="btn btn-hero btn-outline" onclick="scrollToSection('about')">
+                                <i class="bi bi-info-circle me-2"></i>Learn More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-left" data-aos-delay="800">
+                    <div class="text-center">
+                        <div style="font-size: 15rem; animation: float-cookie 3s ease-in-out infinite;">🍪</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section py-5" id="features">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 fw-bold mb-3">Mengapa Pilih Cookie Lab?</h2>
+                <p class="lead">Tiga alasan utama yang membuat cookies kami berbeda</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">🌾</div>
+                        <h3 class="card-title">100% Gluten-Free</h3>
+                        <p class="card-text">Dibuat dengan tepung singkong berkualitas premium, aman untuk penderita celiac dan sensitivitas gluten.</p>
+                        <div class="mt-3">
+                            <span class="badge bg-success">Certified Safe</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">⭐</div>
+                        <h3 class="card-title">Bahan Premium</h3>
+                        <p class="card-text">Menggunakan bahan-bahan pilihan terbaik untuk menghasilkan rasa yang lezat dan tekstur yang sempurna.</p>
+                        <div class="mt-3">
+                            <span class="badge bg-warning">Premium Quality</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">❤️</div>
+                        <h3 class="card-title">Guilt-Free</h3>
+                        <p class="card-text">Nikmati cookies tanpa rasa bersalah. Lebih sehat, tetap lezat, dan cocok untuk gaya hidup aktif.</p>
+                        <div class="mt-3">
+                            <span class="badge bg-danger">Healthy Choice</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Counter -->
+            <div class="row text-center mt-5" data-aos="fade-up">
+                <div class="col-md-3">
+                    <div class="counter" data-target="1000">0</div>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="counter" data-target="50">0</div>
+                    <p>Cookie Variants</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="counter" data-target="100">0</div>
+                    <p class="text-nowrap">% Gluten-Free</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="counter" data-target="5">0</div>
+                    <p>Star Rating</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section py-5" id="products">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 fw-bold mb-3">Produk Kami</h2>
+                <p class="lead">Berbagai varian cookies lezat untuk setiap selera</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="product-card h-100" onclick="showProductDetail('Classic Chocolate Almond Cookies')">
+                        <div class="product-emoji">🍪</div>
+                        <h3 class="card-title">Chocolate Almond Cookies</h3>
+                        <p class="card-text">Cookies klasik dengan cokelat chip premium yang meleleh di mulut</p>
+                        <div class="mt-3">
+                            <span class="fw-bold text-success">Rp 40.000</span>
+                            <button class="btn btn-sm btn-outline-primary ms-2">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="product-card h-100" onclick="showProductDetail('Peanut Crunch Cookies')">
+                        <div class="product-emoji">🥜</div>
+                        <h3 class="card-title">Peanut Crunch Cookies</h3>
+                        <p class="card-text">Perpaduan kacang-kacangan premium dengan rasa yang kaya dan gurih</p>
+                        <div class="mt-3">
+                            <span class="fw-bold text-success">Rp 40.000</span>
+                            <button class="btn btn-sm btn-outline-primary ms-2">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="product-card h-100" onclick="showProductDetail('Matcha Mood Cookies')">
+                        <div class="product-emoji">🍵</div>
+                        <h3 class="card-title">Matcha Mood Cookies</h3>
+                        <p class="card-text">Cookies dengan dried berry alami yang memberikan rasa segar dan manis</p>
+                        <div class="mt-3">
+                            <span class="fw-bold text-success">Rp 40.000</span>
+                            <button class="btn btn-sm btn-outline-primary ms-2">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="product-card h-100" onclick="showProductDetail('Brookies')">
+                        <div class="product-emoji">🍫</div>
+                        <h3 class="card-title">Brookies</h3>
+                        <p class="card-text">Kombinasi madu murni dan oat untuk rasa natural yang menyehatkan</p>
+                        <div class="mt-3">
+                            <span class="fw-bold text-success">Rp 37.000</span>
+                            <button class="btn btn-sm btn-outline-primary ms-2">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 fw-bold mb-3">Apa Kata Pelanggan</h2>
+                <p class="lead">Testimoni dari mereka yang sudah merasakan kelezatan cookies kami</p>
+            </div>
+            
+            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-avatar">👩</div>
+                                    <blockquote class="blockquote">
+                                        <p>"Akhirnya ada cookies yang bisa saya nikmati tanpa khawatir gluten! Rasanya enak banget dan teksturnya pas."</p>
+                                    </blockquote>
+                                    <footer class="blockquote-footer">
+                                        <cite title="Source Title">Sarah, Jakarta</cite>
+                                    </footer>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-avatar">👨</div>
+                                    <blockquote class="blockquote">
+                                        <p>"Sebagai penderita celiac, saya sangat senang menemukan Cookie Lab. Aman dan enak!"</p>
+                                    </blockquote>
+                                    <footer class="blockquote-footer">
+                                        <cite title="Source Title">Budi, Bandung</cite>
+                                    </footer>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section py-5" id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="display-4 fw-bold mb-4">Tentang Cookie Lab</h2>
+                    <p class="lead mb-4">Cookie Lab adalah startup yang berkomitmen menyediakan cookies gluten-free berkualitas tinggi dengan cita rasa yang tak terlupakan.</p>
+                    
+                    <div class="accordion" id="aboutAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                    <i class="bi bi-lightbulb me-2"></i>Misi Kami
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#aboutAccordion">
+                                <div class="accordion-body">
+                                    Membuktikan bahwa makanan sehat bisa tetap lezat dan memuaskan untuk semua orang.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                    <i class="bi bi-award me-2"></i>Kualitas Terjamin
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#aboutAccordion">
+                                <div class="accordion-body">
+                                    Setiap batch cookies diproduksi dengan standar kualitas tinggi dan kontrol kualitas yang ketat.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                    <i class="bi bi-heart me-2"></i>Komitmen Kesehatan
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#aboutAccordion">
+                                <div class="accordion-body">
+                                    Mendukung gaya hidup sehat dengan menyediakan alternatif cookies yang aman dan bergizi.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="text-center">
+                        <div class="position-relative d-inline-block">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23FFF8E1' rx='20'/%3E%3Ccircle cx='200' cy='200' r='150' fill='%23FFB74D' opacity='0.3'/%3E%3Ctext x='200' y='220' font-size='120' text-anchor='middle' fill='%236D4C41'%3E🍪%3C/text%3E%3C/svg%3E" 
+                                 alt="Cookie Lab Story" class="img-fluid rounded-3 shadow-lg">
+                            <div class="position-absolute top-0 start-0 w-100 h-100 bg-gradient-primary opacity-25 rounded-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-5" style="background: var(--gradient-secondary);">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 fw-bold mb-3">Proses Produksi Kami</h2>
+                <p class="lead">Dari bahan pilihan hingga cookies siap santap</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-center">
+                        <div class="process-icon mb-3" style="font-size: 4rem;">🌱</div>
+                        <h4>Pemilihan Bahan</h4>
+                        <p>Tepung singkong premium dan bahan organik terbaik dipilih dengan teliti</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-center">
+                        <div class="process-icon mb-3" style="font-size: 4rem;">👨‍🍳</div>
+                        <h4>Pencampuran Ahli</h4>
+                        <p>Resep rahasia dan teknik pencampuran khusus untuk hasil sempurna</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-center">
+                        <div class="process-icon mb-3" style="font-size: 4rem;">🔥</div>
+                        <h4>Pemanggangan Presisi</h4>
+                        <p>Dipanggang dengan suhu dan waktu yang tepat untuk tekstur ideal</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-center">
+                        <div class="process-icon mb-3" style="font-size: 4rem;">📦</div>
+                        <h4>Kemasan Higienis</h4>
+                        <p>Dikemas dengan standar food grade untuk menjaga kesegaran</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold mb-3">Dapatkan Update Terbaru</h2>
+                    <p class="lead mb-4">Bergabunglah dengan komunitas Cookie Lab dan dapatkan info produk baru, promo menarik, dan tips kesehatan!</p>
+                    
+                    <form class="d-flex gap-3 justify-content-center flex-wrap">
+                        <input type="email" class="form-control" placeholder="Masukkan email Anda" style="max-width: 300px; border-radius: 25px;">
+                        <button type="submit" class="btn btn-light btn-lg" style="border-radius: 25px; padding: 12px 30px;">
+                            <i class="bi bi-envelope me-2"></i>Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-5 bg-white" id="contact">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 fw-bold mb-3">Hubungi Kami</h2>
+                <p class="lead">Siap melayani pesanan dan pertanyaan Anda</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-right">
+                    <div class="contact-info">
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="contact-icon me-3">
+                                    <i class="bi bi-geo-alt-fill" style="font-size: 1.5rem; color: var(--secondary-color);"></i>
+                                </div>
+                                <div>
+                                    <h5>Alamat</h5>
+                                    <p class="mb-0">Jl. Surya Sumantri No. 63<br>Bandung, Jawa Barat</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="contact-icon me-3">
+                                    <i class="bi bi-telephone-fill" style="font-size: 1.5rem; color: var(--secondary-color);"></i>
+                                </div>
+                                <div>
+                                    <h5>Telepon</h5>
+                                    <p class="mb-0">+62 896-5276-2891</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="contact-icon me-3">
+                                    <i class="bi bi-envelope-fill" style="font-size: 1.5rem; color: var(--secondary-color);"></i>
+                                </div>
+                                <div>
+                                    <h5>Email</h5>
+                                    <p class="mb-0">hello@cookielab.id</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="social-media">
+                            <h5 class="mb-3">Follow Us</h5>
+                            <div class="social-icons">
+                                <a href="#" class="me-2"><i class="bi bi-instagram"></i></a>
+                                <a href="#" class="me-2"><i class="bi bi-facebook"></i></a>
+                                <a href="#" class="me-2"><i class="bi bi-twitter"></i></a>
+                                <a href="#" class="me-2"><i class="bi bi-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-8" data-aos="fade-left">
+                    <form class="contact-form">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Nama Lengkap" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" placeholder="Email" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="tel" class="form-control" placeholder="Nomor Telepon">
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-select">
+                                    <option selected>Pilih Topik</option>
+                                    <option value="order">Pemesanan</option>
+                                    <option value="info">Info Produk</option>
+                                    <option value="partnership">Kerjasama</option>
+                                    <option value="other">Lainnya</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control" rows="5" placeholder="Pesan Anda" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-lg" style="background: var(--gradient-primary); border: none; border-radius: 25px; padding: 12px 40px;">
+                                    <i class="bi bi-send me-2"></i>Kirim Pesan
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="logo-icon me-3"></div>
+                        <h3 class="text-white">Cookie Lab</h3>
+                    </div>
+                    <p class="text-light mb-3">Menyediakan cookies gluten-free terbaik dengan cita rasa premium untuk gaya hidup sehat Anda.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-whatsapp"></i></a>
+                        <a href="#"><i class="bi bi-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2">
+                    <h5 class="text-white mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-light text-decoration-none">Home</a></li>
+                        <li><a href="#products" class="text-light text-decoration-none">Products</a></li>
+                        <li><a href="#about" class="text-light text-decoration-none">About</a></li>
+                        <li><a href="#contact" class="text-light text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2">
+                    <h5 class="text-white mb-3">Products</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Chocolate Almond Cookies</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Peanut Crunch Cookies</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Matcha Mood Cookies</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Brookies</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2">
+                    <h5 class="text-white mb-3">Support</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">FAQ</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Shipping</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Returns</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Help Center</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2">
+                    <h5 class="text-white mb-3">Legal</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Terms of Service</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-light mb-0">&copy; 2025 Cookie Lab. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="text-light mb-0">Made with ❤️ in Bandung, West Java</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Order Modal -->
+    <!-- Order Modal -->
+    <div class="modal fade" id="orderModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">🛒 Order Cookie Lab</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <h6>Pilih Produk:</h6>
+                            <div class="product-selection">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input product-checkbox" type="checkbox" value="40000" id="product1">
+                                    <label class="form-check-label" for="product1">
+                                        🍪 Classic Chocolate Almond Cookies - Rp 40.000
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input product-checkbox" type="checkbox" value="40000" id="product2">
+                                    <label class="form-check-label" for="product2">
+                                        🥜 Peanut Crunch Cookies - Rp 40.000
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input product-checkbox" type="checkbox" value="40000" id="product3">
+                                    <label class="form-check-label" for="product3">
+                                        🍵 Matcha Mood Cookies - Rp 40.000
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input product-checkbox" type="checkbox" value="37000" id="product4">
+                                    <label class="form-check-label" for="product4">
+                                        🍫 Brookies - Rp 37.000
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Detail Pesanan:</h6>
+                            <form id="orderForm">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="buyerName" placeholder="Nama Lengkap" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="tel" class="form-control" id="buyerPhone" placeholder="Nomor WhatsApp" required>
+                                </div>
+                                <div class="mb-3">
+                                    <textarea class="form-control" rows="3" id="buyerAddress" placeholder="Alamat Lengkap" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <select class="form-select" id="shippingMethod" required>
+                                        <option value="">Pilih Metode Pengiriman</option>
+                                        <option value="Pickup (Gratis)">Pickup (Gratis)</option>
+                                        <option value="Delivery (+Rp 10.000)">Delivery (+Rp 10.000)</option>
+                                        <option value="Kurir Ekspedisi (+Rp 15.000)">Kurir Ekspedisi (+Rp 15.000)</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-3 bg-light rounded">
+                        <h6>Total Pesanan: <span id="totalPrice" class="text-primary">Rp 0</span></h6>
+                        <small class="text-muted" id="priceBreakdown"></small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-success" onclick="processOrder()">
+                        <i class="bi bi-whatsapp me-2"></i>Order via WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

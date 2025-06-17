@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cookie Lab Sticker Design</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .sticker-container {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .sticker {
+      width: 280px;
+      height: auto;
+      background: linear-gradient(135deg, #FFF8E7 0%, #F5E6D3 100%);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 2px solid #E8D5C4;
+    }
+
+    .brand-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .logo-icon {
+      width: 20px;
+      height: 20px;
+      background: #D2691E;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .logo-icon::before {
+      content: '';
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: #8B4513;
+      border-radius: 50%;
+      top: 4px;
+      left: 6px;
+      box-shadow: 6px 0 #8B4513, 3px 6px #8B4513, 9px 6px #8B4513;
+    }
+
+    .brand-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #8B4513;
+      letter-spacing: 1px;
+    }
+
+    .product-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: #5D4037;
+      text-align: center;
+      margin: 15px 0;
+      line-height: 1.2;
+    }
+
+    .slogan {
+      background: rgba(255, 140, 105, 0.1);
+      color: #D2691E;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 20px;
+      text-align: center;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(210, 105, 30, 0.2);
+    }
+
+    .ingredients-hint {
+      font-size: 9px;
+      color: #8B7355;
+      text-align: center;
+      margin-top: 5px;
+      font-style: italic;
+    }
+
+    .cookie-illustration {
+      width: 50px;
+      height: 50px;
+      background: #D2691E;
+      border-radius: 50%;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      opacity: 0.15;
+    }
+
+    .cookie-illustration::before {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #8B4513;
+      border-radius: 50%;
+      top: 10px;
+      left: 12px;
+      box-shadow: 15px 0 #8B4513, 8px 12px #8B4513, 20px 12px #8B4513, 12px 25px #8B4513;
+    }
+
+    .qr-code {
+      margin-top: 12px;
+      width: 50px;
+      height: 50px;
+      background: #ccc;
+      align-self: center;
+      border-radius: 4px;
+      font-size: 8px;
+      color: #555;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .info-section {
+      margin-top: 12px;
+      font-size: 9px;
+      color: #6D4C41;
+      text-align: center;
+    }
+
+    .side-slogan {
+      font-size: 9px;
+      font-style: italic;
+      color: #A1887F;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    .eco-badge {
+      background: #DCE775;
+      color: #33691E;
+      padding: 3px 6px;
+      font-size: 8px;
+      font-weight: bold;
+      border-radius: 10px;
+      width: fit-content;
+      margin: 8px auto 0;
+    }
+
+    .thank-card {
+      background: #FFF3E0;
+      border: 1px dashed #FFA726;
+      padding: 8px;
+      margin-top: 14px;
+      font-size: 9px;
+      color: #6D4C41;
+      text-align: center;
+      border-radius: 10px;
+    }
+
+    .sticker-alt {
+      background: linear-gradient(135deg, #F4E4C1 0%, #E8D5C4 100%);
+      border: 2px solid #D2691E;
+    }
+
+    .sticker-alt .slogan {
+      background: rgba(139, 69, 19, 0.1);
+      color: #8B4513;
+      border: 1px solid rgba(139, 69, 19, 0.3);
+    }
+
+    .preview-label {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #666;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="sticker-container">
+    <div>
+      <div class="preview-label">Design Option 1</div>
+      <div class="sticker">
+        <div class="brand-header">
+          <div class="logo-icon"></div>
+          <div class="brand-name">COOKIE LAB</div>
+        </div>
+
+        <div class="product-name">
+          CHOCOLATE<br>
+          ALMOND<br>
+          COOKIES
+        </div>
+
+        <div class="slogan">GLUTEN-FREE • GUILT-FREE</div>
+        <div class="ingredients-hint">premium chocolate & roasted almonds</div>
+
+        <div class="cookie-illustration"></div>
+        <div class="qr-code">QR</div>
+
+        <div class="info-section">
+          Ingredients: Almonds, cocoa, brown sugar<br>
+          Exp: 12/2025
+        </div>
+
+        <div class="eco-badge">eco-friendly ♻️</div>
+        <div class="side-slogan">Enjoy happiness in every bite!</div>
+        <div class="thank-card">
+          Thanks for supporting small business!<br>
+          We hope our cookies make your day sweeter ❤️
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="preview-label">Design Option 2</div>
+      <div class="sticker sticker-alt">
+        <div class="brand-header">
+          <div class="logo-icon"></div>
+          <div class="brand-name">COOKIE LAB</div>
+        </div>
+
+        <div class="product-name">
+          CHOCOLATE<br>
+          ALMOND<br>
+          COOKIES
+        </div>
+
+        <div class="slogan">GLUTEN-FREE • GUILT-FREE</div>
+        <div class="ingredients-hint">made with love & natural ingredients</div>
+
+        <div class="cookie-illustration"></div>
+        <div class="qr-code">QR</div>
+
+        <div class="info-section">
+          Ingredients: Almonds, cocoa, brown sugar<br>
+          Exp: 12/2025
+        </div>
+
+        <div class="eco-badge">eco-friendly ♻️</div>
+        <div class="side-slogan">Enjoy happiness in every bite!</div>
+        <div class="thank-card">
+          Thanks for supporting small business!<br>
+          We hope our cookies make your day sweeter ❤️
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

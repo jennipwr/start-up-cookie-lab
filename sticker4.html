@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie Lab Sticker Design - Enhanced</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(45deg, #f5f5f5, #e8e8e8);
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .sticker-container {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .sticker {
+        width: 320px;
+        height: 370px;
+        background: linear-gradient(135deg, #fff8e7 0%, #f5e6d3 100%);
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 3px solid #e8d5c4;
+        transition: transform 0.3s ease;
+      }
+
+      .sticker:hover {
+        transform: translateY(-5px);
+      }
+
+      /* Background Cookie Pattern */
+      .cookie-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.06;
+        z-index: 1;
+      }
+
+      .cookie-bg {
+        position: absolute;
+        width: 35px;
+        height: 35px;
+        background: #d2691e;
+        border-radius: 50%;
+      }
+
+      .cookie-bg::before {
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #8b4513;
+        border-radius: 50%;
+        top: 8px;
+        left: 10px;
+        box-shadow: 10px 0 #8b4513, 5px 8px #8b4513, 15px 8px #8b4513,
+          8px 18px #8b4513;
+      }
+
+      .cookie-bg:nth-child(1) {
+        top: 20px;
+        left: 30px;
+        transform: rotate(15deg);
+      }
+      .cookie-bg:nth-child(2) {
+        top: 60px;
+        right: 20px;
+        transform: rotate(-20deg);
+      }
+      .cookie-bg:nth-child(3) {
+        bottom: 80px;
+        left: 15px;
+        transform: rotate(45deg);
+      }
+      .cookie-bg:nth-child(4) {
+        bottom: 30px;
+        right: 40px;
+        transform: rotate(-10deg);
+      }
+      .cookie-bg:nth-child(5) {
+        top: 120px;
+        left: 50px;
+        transform: rotate(30deg);
+      }
+      .cookie-bg:nth-child(6) {
+        top: 180px;
+        right: 60px;
+        transform: rotate(-45deg);
+      }
+
+      /* Content Layer */
+      .content {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .brand-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+      }
+
+      .brand-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo-icon {
+        width: 28px;
+        height: 28px;
+        background: radial-gradient(circle, #d2691e, #b8860b);
+        border-radius: 50%;
+        position: relative;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .logo-icon::before {
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #8b4513;
+        border-radius: 50%;
+        top: 6px;
+        left: 8px;
+        box-shadow: 8px 0 #8b4513, 4px 8px #8b4513, 12px 8px #8b4513;
+      }
+
+      .brand-name {
+        font-size: 16px;
+        font-weight: 800;
+        color: #8b4513;
+        letter-spacing: 1.2px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      .quality-badge {
+        background: linear-gradient(45deg, #ff6b35, #f7931e);
+        color: white;
+        font-size: 8px;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      .product-name {
+        font-size: 22px;
+        font-weight: 900;
+        color: #5d4037;
+        text-align: center;
+        margin: 20px 0;
+        line-height: 1.1;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        background: linear-gradient(45deg, #5d4037, #8b4513);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .features-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        margin: 15px 0;
+      }
+
+      .feature-badge {
+        background: rgba(255, 140, 105, 0.15);
+        color: #d2691e;
+        font-size: 9px;
+        font-weight: 700;
+        padding: 6px 10px;
+        border-radius: 15px;
+        text-align: center;
+        letter-spacing: 0.3px;
+        border: 1.5px solid rgba(210, 105, 30, 0.3);
+        flex: 1;
+        backdrop-filter: blur(5px);
+      }
+
+      .main-slogan {
+        background: linear-gradient(
+          45deg,
+          rgba(255, 107, 53, 0.2),
+          rgba(247, 147, 30, 0.2)
+        );
+        color: #8b4513;
+        font-size: 11px;
+        font-weight: 800;
+        padding: 8px 15px;
+        border-radius: 25px;
+        text-align: center;
+        letter-spacing: 1px;
+        border: 2px solid rgba(139, 69, 19, 0.3);
+        margin: 12px 0;
+        text-transform: uppercase;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .product-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0px 5px 8px 5px; /* Tambah padding kiri-kanan */
+        font-size: 10px;
+        color: #8b7355;
+        flex-wrap: wrap; /* Biar bisa wrap kalau kepanjangan */
+        gap: 8px; /* Kasih jarak antar element */
+      }
+
+      .weight-info {
+        background: rgba(139, 115, 85, 0.1);
+        padding: 4px 8px;
+        border-radius: 10px;
+        font-weight: 600;
+        border: 1px solid rgba(139, 115, 85, 0.2);
+      }
+
+      .exp-date {
+        background: rgba(220, 20, 60, 0.1);
+        color: #dc143c;
+        padding: 4px 8px;
+        border-radius: 10px;
+        font-weight: 700;
+        border: 1px solid rgba(220, 20, 60, 0.2);
+      }
+
+      .ingredients-hint {
+        font-size: 9px;
+        color: #8b7355;
+        text-align: center;
+        font-style: italic;
+        background: rgba(255, 255, 255, 0.3);
+        padding: 6px 12px;
+        border-radius: 15px;
+        border: 1px solid rgba(139, 115, 85, 0.2);
+        backdrop-filter: blur(3px);
+      }
+
+      .nutrition-info {
+        display: flex;
+        justify-content: space-around;
+        margin: 10px 0;
+        font-size: 8px;
+        color: #8b7355;
+      }
+
+      .nutrition-item {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.4);
+        padding: 4px 6px;
+        border-radius: 8px;
+        border: 1px solid rgba(139, 115, 85, 0.15);
+      }
+
+      .nutrition-value {
+        font-weight: 700;
+        color: #5d4037;
+        display: block;
+      }
+
+      /* Alternative Design */
+      .sticker-alt {
+        background: linear-gradient(135deg, #f4e4c1 0%, #e8d5c4 100%);
+        border: 3px solid #d2691e;
+      }
+
+      .sticker-alt .feature-badge {
+        background: rgba(139, 69, 19, 0.15);
+        color: #8b4513;
+        border: 1.5px solid rgba(139, 69, 19, 0.4);
+      }
+
+      .sticker-alt .main-slogan {
+        background: linear-gradient(
+          45deg,
+          rgba(139, 69, 19, 0.2),
+          rgba(160, 82, 45, 0.2)
+        );
+        border: 2px solid rgba(139, 69, 19, 0.4);
+      }
+
+      .preview-label {
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 14px;
+        color: #666;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* Decorative Elements */
+      .corner-decoration {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(
+          45deg,
+          rgba(210, 105, 30, 0.1),
+          rgba(139, 69, 19, 0.1)
+        );
+        border-radius: 50%;
+        top: -20px;
+        right: -20px;
+        border: 2px solid rgba(210, 105, 30, 0.2);
+      }
+
+      .sparkle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: #ffd700;
+        border-radius: 50%;
+        animation: sparkle 2s infinite alternate;
+      }
+
+      .sparkle:nth-child(1) {
+        top: 40px;
+        right: 80px;
+        animation-delay: 0s;
+      }
+      .sparkle:nth-child(2) {
+        bottom: 60px;
+        left: 70px;
+        animation-delay: 0.5s;
+      }
+      .sparkle:nth-child(3) {
+        top: 100px;
+        right: 30px;
+        animation-delay: 1s;
+      }
+
+      @keyframes sparkle {
+        0% {
+          opacity: 0.3;
+          transform: scale(0.8);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+      }
+
+      .weight-info,
+      .exp-date {
+        white-space: nowrap; /* Biar teks gak putus */
+        min-width: fit-content; /* Pastikan lebar cukup */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sticker-container">
+      <div>
+        <div class="preview-label">Enhanced Design 1</div>
+        <div class="sticker">
+          <div class="cookie-pattern">
+            <div class="cookie-bg"></div>
+            <div class="cookie-bg"></div>
+            <div class="cookie-bg"></div>
+            <div class="cookie-bg"></div>
+            <div class="cookie-bg"></div>
+            <div class="cookie-bg"></div>
+          </div>
+
+          <div class="content">
+            <div class="brand-header">
+              <div class="brand-left">
+                <div class="logo-icon"></div>
+                <div class="brand-name">COOKIE LAB</div>
+              </div>
+              <div class="quality-badge">PREMIUM</div>
+            </div>
+
+            <div class="product-name">
+              CHOCOLATE<br />
+              ALMOND<br />
+              COOKIES
+            </div>
+
+            <div class="features-row">
+              <div class="feature-badge">GLUTEN-FREE</div>
+              <div class="feature-badge">NO SUGAR</div>
+              <div class="feature-badge">ORGANIC</div>
+            </div>
+
+            <div class="main-slogan">Handcrafted • Guilt-Free</div>
+
+            <div class="product-details">
+              <div class="weight-info">NET: 250g</div>
+              <div class="exp-date">EXP: 15/08/2025</div>
+            </div>
+
+            <div class="nutrition-info">
+              <div class="nutrition-item">
+                <span class="nutrition-value">120</span>
+                <div>KCAL</div>
+              </div>
+              <div class="nutrition-item">
+                <span class="nutrition-value">8g</span>
+                <div>PROTEIN</div>
+              </div>
+              <div class="nutrition-item">
+                <span class="nutrition-value">12g</span>
+                <div>FIBER</div>
+              </div>
+            </div>
+
+            <div class="ingredients-hint">
+              premium dark chocolate & roasted california almonds
+            </div>
+          </div>
+
+          <div class="corner-decoration"></div>
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="preview-label">Enhanced Design 2</div>
+        <div class="sticker sticker-alt">
+          <div class="cookie-pattern">
+            <div class="cookie-bg"></div>
+            <div class="cookie-bg"></div>
+            <div class="cookie-bg"></div>
+            <div class="cookie-bg"></div>
+            <div class="cookie-bg"></div>
+            <div class="cookie-bg"></div>
+          </div>
+
+          <div class="content">
+            <div class="brand-header">
+              <div class="brand-left">
+                <div class="logo-icon"></div>
+                <div class="brand-name">COOKIE LAB</div>
+              </div>
+              <div class="quality-badge">PREMIUM</div>
+            </div>
+
+            <div class="product-name">
+              CHOCOLATE<br />
+              ALMOND<br />
+              COOKIES
+            </div>
+
+            <div class="features-row">
+              <div class="feature-badge">HIGH FIBER</div>
+              <div class="feature-badge">NATURAL</div>
+              <div class="feature-badge">FRESH</div>
+            </div>
+
+            <div class="main-slogan">GLUTEN-FREE • GUILT-FREE</div>
+
+            <div class="product-details">
+              <div class="weight-info">NET: 160g</div>
+              <div class="exp-date">EXP: 30/06/2025</div>
+            </div>
+
+            <div class="nutrition-info">
+              <div class="nutrition-item">
+                <span class="nutrition-value">110</span>
+                <div>KCAL</div>
+              </div>
+              <div class="nutrition-item">
+                <span class="nutrition-value">6g</span>
+                <div>PROTEIN</div>
+              </div>
+              <div class="nutrition-item">
+                <span class="nutrition-value">10g</span>
+                <div>FIBER</div>
+              </div>
+            </div>
+
+            <div class="ingredients-hint">
+              belgian chocolate & organic raw almonds
+            </div>
+          </div>
+
+          <div class="corner-decoration"></div>
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

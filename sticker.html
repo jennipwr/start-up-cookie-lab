@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Lab Sticker Design</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .sticker-preview {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .sticker-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #8B4513;
+            margin-bottom: 10px;
+        }
+        
+        .dimensions {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        /* Circular Sticker Design */
+        .circular-sticker {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFF8DC 0%, #F5E6A8 100%);
+            border: 3px solid #8B4513;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .flask-icon {
+            width: 25px;
+            height: 25px;
+            background: #8B4513;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: relative;
+            margin-right: 8px;
+        }
+        
+        .flask-icon::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 10px;
+            background: #8B4513;
+            border-radius: 2px 2px 0 0;
+        }
+        
+        .flask-dots {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .dot {
+            width: 3px;
+            height: 3px;
+            background: #654321;
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .dot:nth-child(1) { top: 0; left: -6px; }
+        .dot:nth-child(2) { top: 0; left: 2px; }
+        .dot:nth-child(3) { top: 6px; left: -3px; }
+        .dot:nth-child(4) { top: 6px; left: 5px; }
+        .dot:nth-child(5) { top: 12px; left: 0px; }
+        
+        .brand-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #8B4513;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        
+        .slogan {
+            font-size: 9px;
+            color: #FF6B35;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        
+        .description {
+            font-size: 7px;
+            color: #8B4513;
+            text-align: center;
+            line-height: 1.2;
+            max-width: 120px;
+        }
+        
+        /* Rectangular Wrap-around Sticker */
+        .rectangular-sticker {
+            width: 267px; /* Circumference: π × 8.5cm ≈ 267px at scale */
+            height: 90px; /* 4.5cm height scaled */
+            background: linear-gradient(to bottom, #FFF8DC 0%, #F5E6A8 50%, #FFE4B5 100%);
+            border: 2px solid #8B4513;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .rectangular-sticker::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="%23D2691E" opacity="0.3"/><circle cx="80" cy="30" r="1.5" fill="%23D2691E" opacity="0.2"/><circle cx="60" cy="70" r="1" fill="%23D2691E" opacity="0.3"/><circle cx="30" cy="80" r="1.5" fill="%23D2691E" opacity="0.2"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .left-section {
+            display: flex;
+            align-items: center;
+            z-index: 1;
+        }
+        
+        .rect-flask {
+            width: 30px;
+            height: 30px;
+            background: #8B4513;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: relative;
+            margin-right: 12px;
+        }
+        
+        .rect-flask::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 12px;
+            background: #8B4513;
+            border-radius: 2px 2px 0 0;
+        }
+        
+        .rect-flask-dots {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .rect-dot {
+            width: 4px;
+            height: 4px;
+            background: #654321;
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .rect-dot:nth-child(1) { top: 0; left: -8px; }
+        .rect-dot:nth-child(2) { top: 0; left: 4px; }
+        .rect-dot:nth-child(3) { top: 8px; left: -4px; }
+        .rect-dot:nth-child(4) { top: 8px; left: 8px; }
+        .rect-dot:nth-child(5) { top: 16px; left: 2px; }
+        
+        .text-section {
+            z-index: 1;
+        }
+        
+        .rect-brand-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #8B4513;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+        
+        .rect-slogan {
+            font-size: 11px;
+            color: #FF6B35;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .right-section {
+            text-align: right;
+            z-index: 1;
+        }
+        
+        .premium-text {
+            font-size: 10px;
+            color: #8B4513;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+        
+        .quality-text {
+            font-size: 8px;
+            color: #D2691E;
+            line-height: 1.2;
+        }
+        
+        .cookie-decoration {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: #D2691E;
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+        
+        .cookie-decoration::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #8B4513;
+            border-radius: 50%;
+            top: 8px;
+            left: 10px;
+            box-shadow: 8px 2px 0 #8B4513, 4px 12px 0 #8B4513, 16px 8px 0 #8B4513, 12px 20px 0 #8B4513;
+        }
+        
+        .notes {
+            margin-top: 30px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            max-width: 600px;
+        }
+        
+        .print-info {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #FF6B35;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .print-info h3 {
+            color: #8B4513;
+            margin-top: 0;
+            font-size: 16px;
+        }
+        
+        .print-info ul {
+            color: #666;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <div class="sticker-preview">
+                <div class="sticker-title">Circular Top Sticker</div>
+                <div class="dimensions">Diameter: 8.5cm</div>
+                <div class="circular-sticker">
+                    <div class="logo-container">
+                        <div class="flask-icon">
+                            <div class="flask-dots">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </div>
+                        <div class="brand-name">Cookie Lab</div>
+                    </div>
+                    <div class="slogan">Gluten-Free, Guilt-Free</div>
+                    <div class="description">Premium cookies dibuat dengan tepung singkong berkualitas tinggi</div>
+                </div>
+            </div>
+        </div>
+        
+        <div>
+            <div class="sticker-preview">
+                <div class="sticker-title">Wrap-around Sticker</div>
+                <div class="dimensions">26.7cm × 4.5cm (keliling toples)</div>
+                <div class="rectangular-sticker">
+                    <div class="left-section">
+                        <div class="rect-flask">
+                            <div class="rect-flask-dots">
+                                <div class="rect-dot"></div>
+                                <div class="rect-dot"></div>
+                                <div class="rect-dot"></div>
+                                <div class="rect-dot"></div>
+                                <div class="rect-dot"></div>
+                            </div>
+                        </div>
+                        <div class="text-section">
+                            <div class="rect-brand-name">Cookie Lab</div>
+                            <div class="rect-slogan">Gluten-Free, Guilt-Free</div>
+                        </div>
+                    </div>
+                    <div class="right-section">
+                        <div class="premium-text">Premium</div>
+                        <div class="quality-text">Healthy & Delicious<br>Gluten-Free Cookies</div>
+                    </div>
+                    <div class="cookie-decoration"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="notes">
+        <div class="print-info">
+            <h3>Informasi Cetak</h3>
+            <ul>
+                <li><strong>Sticker Bulat:</strong> Diameter 8.5cm - untuk bagian atas toples</li>
+                <li><strong>Sticker Persegi:</strong> 26.7cm × 4.5cm - untuk melingkari sisi toples</li>
+                <li><strong>Material:</strong> Vinyl waterproof atau kertas sticker glossy</li>
+                <li><strong>Finishing:</strong> Laminating glossy untuk perlindungan ekstra</li>
+                <li><strong>Warna:</strong> CMYK full color dengan gradasi cream dan coklat sesuai brand</li>
+                <li><strong>Cutting:</strong> Die-cut untuk sticker bulat, straight cut untuk wrap-around</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
